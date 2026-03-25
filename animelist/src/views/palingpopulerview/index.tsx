@@ -14,12 +14,12 @@ interface Iapi {
   };
   title: string;
 }
-const Homepage = () => {
+const TopAnimeSemua = () => {
   const [api, setApi] = useState<Iapi[]>([]);
   useEffect(() => {
     async function getApi() {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API}/top/anime?limit=8`,
+        `${process.env.NEXT_PUBLIC_API}/top/anime`,
       );
       const result = await response.json();
       setApi(result.data);
@@ -28,24 +28,15 @@ const Homepage = () => {
   }, []);
 
   return (
-    <div className="py-23">
-      <div className="flex justify-between">
-        <h1 className="px-4 font-semibold text-sm md:text-lg lg:text-xl">
+    <div className="py-25 lg:py-23">
+        <h1 className="px-4 font-semibold text-sm md:text-lg lg:text-xl text-center">
           Paling Populer
         </h1>
-        <Link
-          href="/paling populer"
-          className="hover:text-blue-500 hover:underline px-4 text-sm md:text-md lg:text-lg"
-        >
-          Lihat Semua
-        </Link>
-      </div>
-
-      <div className="grid grid-cols-2 text-sm md:grid-cols-3 md:text-lg md:m-3 lg:grid-cols-4 lg:gap-4 lg:text-xl lg:m-4 text-center m-2 gap-2 bg-">
+      <div className="grid grid-cols-2 text-sm md:grid-cols-3 md:text-lg md:m-3 lg:grid-cols-4 lg:gap-4 lg:text-xl lg:m-4 text-center m-2 gap-2 bg-white">
         {api.map((anime) => (
           <div
             key={anime.mal_id}
-            className="place-items-center bg-gray-300 rounded-md overflow-hidden shadow-2xl text-black transition-all duration-300 hover:scale-102 "
+            className="place-items-center bg-gray-300 rounded-md overflow-hidden shadow-3xl text-black transition-all duration-300 hover:scale-102 "
           >
             <Link href={`/anime/${anime.mal_id}`}>
               <Image
@@ -64,4 +55,4 @@ const Homepage = () => {
   );
 };
 
-export default Homepage;
+export default TopAnimeSemua;

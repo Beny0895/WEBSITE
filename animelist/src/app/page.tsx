@@ -1,9 +1,4 @@
-import Homepage from "./view/cardlist/card";
-
+import Homeview from "@/views/homeview"
 export default function Home() {
-  return (
-    <div>
-      <Homepage/>
-    </div>
-  );
+  return <Homeview/>
 }
